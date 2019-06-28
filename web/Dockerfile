@@ -1,4 +1,5 @@
-FROM jitsi/base
+ARG TAG=base-latest
+FROM karrieretutor/jitsi:$TAG
 
 RUN \
 	apt-dpkg-wrap apt-get update && \
