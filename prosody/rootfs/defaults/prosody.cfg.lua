@@ -135,6 +135,13 @@ authentication = "internal_plain"
 --sql = { driver = "SQLite3", database = "prosody.sqlite" } -- Default. 'database' is the filename.
 --sql = { driver = "MySQL", database = "prosody", username = "prosody", password = "secret", host = "localhost" }
 --sql = { driver = "PostgreSQL", database = "prosody", username = "prosody", password = "secret", host = "localhost" }
+{{ if .Env.SQLITE_DB }}
+	sql = { driver = "SQLite3", database = "{{ .Env.SQLITE_DB }}" }
+{{ else if .Env.MYSQL_DB }}
+	sql = { driver = "MySQL", database = "{{ .Env.MYSQL_DB }}", username = "{{ .Env.MYSQL_USER }}", password = "{{ .Env.MYSQL_PASSWORD }}", host = "{{ or .Env.MYSQL_HOST "localhost" }}" }
+{{ else if .Env.POSTGRES_DB }}
+	sql = { driver = "PostgreSQL", database = "{{ .Env.POSTGRES_DB }}", username = "{{ .Env.POSTGRES_USER }}", password = "{{ .Env.POSTGRES_PASSWORD }}", host = "{{ or .Env.POSTGRES_HOST "localhost" }}" }
+{{ end }}
 
 -- Logging configuration
 -- For advanced logging see http://prosody.im/doc/logging
