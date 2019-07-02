@@ -137,10 +137,13 @@ authentication = "internal_plain"
 --sql = { driver = "PostgreSQL", database = "prosody", username = "prosody", password = "secret", host = "localhost" }
 {{ if .Env.SQLITE_DB }}
 	sql = { driver = "SQLite3", database = "{{ .Env.SQLITE_DB }}" }
+	storage = "sql"
 {{ else if .Env.MYSQL_DB }}
 	sql = { driver = "MySQL", database = "{{ .Env.MYSQL_DB }}", username = "{{ .Env.MYSQL_USER }}", password = "{{ .Env.MYSQL_PASSWORD }}", host = "{{ or .Env.MYSQL_HOST "localhost" }}" }
+	storage = "sql"
 {{ else if .Env.POSTGRES_DB }}
 	sql = { driver = "PostgreSQL", database = "{{ .Env.POSTGRES_DB }}", username = "{{ .Env.POSTGRES_USER }}", password = "{{ .Env.POSTGRES_PASSWORD }}", host = "{{ or .Env.POSTGRES_HOST "localhost" }}" }
+	storage = "sql"
 {{ end }}
 
 -- Logging configuration
