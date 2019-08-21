@@ -11,6 +11,8 @@ RUN \
 
 COPY rootfs/ /
 
+RUN wget -O /usr/share/jitsi-meet/images/watermark.png https://www.karrieretutor.de/startseite/wp-content/themes/karrieretutor/assets/images/logo-karriere-tutor.png 
+
 EXPOSE 80 443
 
 VOLUME /config
