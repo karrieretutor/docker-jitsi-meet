@@ -1,4 +1,5 @@
-FROM jitsi/base
+ARG IMAGE=karrieretutor/jitsi:base-latest
+FROM $IMAGE
 
 RUN	\
 	mkdir -p /usr/share/man/man1 && \
