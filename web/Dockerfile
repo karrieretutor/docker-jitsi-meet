@@ -15,5 +15,4 @@ RUN wget -O /usr/share/jitsi-meet/images/watermark.png https://www.karrieretutor
 
 EXPOSE 80 443
 
-VOLUME /config
-
+VOLUME ["/config", "/etc/letsencrypt"]
